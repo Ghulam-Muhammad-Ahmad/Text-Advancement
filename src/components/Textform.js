@@ -19,10 +19,8 @@ export default function Textform(props) {
     props.showAlert("danger" , "Text Removed")
   }
   function copyHandler() {
-    var texttocopy = document.getElementById("myText");
-texttocopy.select();
-navigator.clipboard.writeText(texttocopy.value);
-props.showAlert("secondary" , "Text Copied")
+navigator.clipboard.writeText(text);
+props.showAlert("secondary" , "Text Copied");
   }
   const extraSpaceRemove = () =>{
     let nospaceText = text.split(/[ ]+/);
@@ -41,23 +39,23 @@ props.showAlert("secondary" , "Text Copied")
     <div className='my-3'>
      <form>
   <div className="form-group">
-    <label htmlFor="myText" className={`textlabel text-${props.mode === "dark" ? "light" : "dark"}`}>Enter Text to Analyze It</label>
+    <label htmlFor="myText" className={`textlabel text-${props.mode === "dark" ? "light" : "dark"}`}>Enter Text </label>
     <textarea className="form-control" value={text} onChange={changeValue} id="myText" rows="8"></textarea>
   </div>
 </form>
 <div className="btns my-4">
-<button className="btn btn-primary mt-1 ml-4" onClick={upperCaseClick}>Convert To Upper Case</button>
-<button className="btn btn-primary mt-1 " onClick={lowerCaseClick}>Convert To Lower Case</button>
-<button className="btn btn-secondary mt-1" onClick={copyHandler}>Copy Text</button>
-<button className="btn btn-info mt-1" onClick={extraSpaceRemove}>Remove Extra Spaces</button>
-<button className="btn btn-danger mt-1 " onClick={removedigits}>Remove Digits</button>
-<button className="btn btn-danger mt-1 " onClick={removeText}>Remove</button>
+<button disabled={text.length === 0}  className="btn btn-primary mt-1 my-1 ml-4" onClick={upperCaseClick}>Convert To Upper Case</button>
+<button disabled={text.length === 0} className="btn btn-primary mt-1 my-1 " onClick={lowerCaseClick}>Convert To Lower Case</button>
+<button disabled={text.length === 0} className="btn btn-secondary mt-1 my-1" onClick={copyHandler}>Copy Text</button>
+<button disabled={text.length === 0} className="btn btn-info mt-1 my-1" onClick={extraSpaceRemove}>Remove Extra Spaces</button>
+<button disabled={text.length === 0} className="btn btn-danger mt-1 my-1 " onClick={removedigits}>Remove Digits</button>
+<button disabled={text.length === 0} className="btn btn-danger mt-1 my-1 " onClick={removeText}>Remove</button>
 
 </div>
     </div>
     <div className="container mt-4">
     <div className={`characterprops text-${props.mode === "dark" ? "light" : "dark"}`}>
-      {text.split(" ").length} Words and {text.length} Characters In The text
+      {text.split(/\s+/).filter((element)=>{return element.length !== 0}).length} Words and {text.length} Characters In The text
     </div>
     <div className="preview">
       <h2 className={`mt-4 text-${props.mode === "dark" ? "light" : "dark"}`} >Preview:</h2>
