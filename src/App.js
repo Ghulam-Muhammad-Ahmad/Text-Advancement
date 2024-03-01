@@ -41,7 +41,7 @@ function App() {
   }
   return (
     <>
-      <Navbar title="Text Advancement" modeMsg={modeMsg} secondarycolor = {secondarycolor} primarycolor = {primarycolor} toggleMode={toggleMode} mode={mode} search={0} links={["Home"]} />
+      <Navbar title="Text & Advancement" modeMsg={modeMsg} secondarycolor = {secondarycolor} primarycolor = {primarycolor} toggleMode={toggleMode} mode={mode} search={0} links={["Home"]} />
       <Alert alert={alert} />
       <div className={"container"}>
         <Textform mode={mode} showAlert={showAlert} />
